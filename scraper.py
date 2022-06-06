@@ -53,7 +53,7 @@ def get_wiki_text(page_body, article_name):
                 else:
                     if paragraph_line is not None:
                         has_iso, iso_indeces = check_encodings(paragraph_line)
-                        if has_iso == True:
+                        if has_iso is True:
                             i = 0
                             line_words = paragraph_line.split()
                             for word in line_words:
@@ -171,15 +171,15 @@ def check_for_multi_articles(page_body, language_code, article_name):
 
         if pc.name == 'p':
             p_list = pc.contents
-            multi_articles_statements = [" may refer to:\n", " most often refers to:\n", " commonly refers to:\n", " most commonly refers to:\n"]
-            fl_multi_articles_vars = ['fr_multi_articles', 'pt_multi_articles']
+            multi_articles_statements = {" may refer to:\n", " most often refers to:\n", " commonly refers to:\n", " most commonly refers to:\n"}
+            fl_multi_articles_vars = ('fr_multi_articles', 'pt_multi_articles')
             for p_el in p_list:
                 if p_el.string in multi_articles_statements and language_code == 'en':
                     multi_articles = True
             for fmav in fl_multi_articles_vars:
                 if fmav in globals():
                     multi_articles = True
-            if multi_articles == True:
+            if multi_articles is True:
                 get_articles_list(page_body, language_code)
             else:
                 get_wiki_text(page_body, article_name)
@@ -188,7 +188,7 @@ def check_for_multi_articles(page_body, language_code, article_name):
 
 def get_article_by_url(search_term, language_code, checked):
 
-    # This function sends a get request to the wikipedia url for the given search term to check the reponse
+    # This function sends a get request to the wikipedia url for the given search term to check the response
 
     article_name = search_term.replace(' ', '_')
     https_heading = 'https://'
@@ -196,11 +196,11 @@ def get_article_by_url(search_term, language_code, checked):
     wiki_full_url = https_heading + language_code + wiki_url + article_name
     response = requests.get(wiki_full_url)
     error_message = ''
-    if response.status_code == 200 and checked == False:
+    if response.status_code == 200 and checked is False:
         wiki_page = BeautifulSoup(response.text, 'html.parser')
         page_body = wiki_page.body
         error_message = check_for_multi_articles(page_body, language_code, article_name)
-    elif response.status_code == 200 and checked == True:
+    elif response.status_code == 200 and checked is True:
         wiki_page = BeautifulSoup(response.text, 'html.parser')
         page_body = wiki_page.body
         error_message = get_wiki_text(page_body, article_name)
