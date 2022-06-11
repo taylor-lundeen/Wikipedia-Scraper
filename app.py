@@ -40,7 +40,8 @@ def index():
                 print(e)
         else:
             return render_template('index.html', errorMessage=error_message)
-    return render_template('index.html', errorMessage='')
+    else:
+        return render_template('index.html', errorMessage='')
 
 if __name__ == "__main__":
     app.run()

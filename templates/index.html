@@ -8,27 +8,37 @@
           crossorigin="anonymous"/>
 </head>
 <body>
-    <div class="container d-flex justify-content-center align-items-center vh-100">
-            <h2>Find a wikipedia page</h2>
-        <form method="POST" id="request-form">
-            <div>
-                <label>Language </label>
-                <select name="language">
-                    <option value="en" selected>English</option>
-                    <option value="es">Spanish</option>
-                    <option value="fr">French</option>
-                    <option value="pt">Portuguese</option>
-                    <option value="it">Italian</option>
-                    <option value="de">German</option>
-                </select>
-            </div>
-            <div>
-                <label>Search Term </label>
-                <input type="text" name="term">
-                <button type="submit">Find</button>
-            </div>
-        </form>
-        {{errorMessage}}
+    <div class="container">
+        <div class="d-flex pt-4 justify-content-center">
+            <h1>Find a wikipedia page</h1>
+        </div>
+        <div class="d-flex pt-4 justify-content-center">
+            <form method="POST" id="request-form">
+                <div class="d-flex gap-2 justify-content-center">
+                    <label>Language </label>
+                    <select name="language" class="btn-primary dropdown-toggle">
+                        <option value="en" selected>English</option>
+                        <option value="es">Spanish</option>
+                        <option value="fr">French</option>
+                        <option value="pt">Portuguese</option>
+                        <option value="it">Italian</option>
+                        <option value="de">German</option>
+                    </select>
+                </div>
+                <div>
+                    <div class="d=flex pt-2 gap-2 justify-content-center">
+                        <label>Search Term </label>
+                        <input type="text" name="term">
+                    </div>
+                    <div class="d-flex pt-2 justify-content-center">
+                        <button type="submit" class="btn btn-primary">Find</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="d-flex pt-2 justify-content-center">
+            {{errorMessage}}
+        </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
