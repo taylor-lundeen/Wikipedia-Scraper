@@ -8,15 +8,13 @@ def check_encodings(text_string):
     # and returning the indexes of the words that have iso-8859-1 encodings
 
     has_iso = False
-    i = 0
     iso_indeces = []
     words = text_string.split()
-    for word in words:
+    for index, word in enumerate(words):
         for element in word:
             if ord(element) in range(129, 255):
                 has_iso = True
-                iso_indeces.append(i)
-        i += 1
+                iso_indeces.append(index)
 
     return has_iso, iso_indeces
 
@@ -211,7 +209,8 @@ def get_article_by_url(search_term, language_code, checked):
 
     return error_message
 
-
+if __name__ == "__main__":
+    get_article_by_url("Seattle", "en", checked=False)
 
 
 
